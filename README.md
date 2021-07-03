@@ -25,7 +25,7 @@
 
 ### 消息队列相关
 
-1. kafka消息丢失的处理方式
+1. RocketMQ消息丢失的处理方式 -> [RocketMQ如何处理消息丢失](https://runnerliu.github.io/2021/05/18/rocketmq-msglost/)
 
 ### 网络相关
 
