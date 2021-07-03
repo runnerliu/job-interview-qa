@@ -6,7 +6,7 @@
 2. python3中bytes和str的区别
 3. 装饰器
 3. list的底层实现方式，存储方式（地址空间分散or连续），插入复杂度
-4. GIL
+4. GIL -> [Python系列 - 计算密集型任务和I/O密集型任务](https://runnerliu.github.io/2017/07/15/jsmjiomj/)
 5. 常用标准库
 6. 常用第三方库
 7. 生成器、迭代器的实现
@@ -17,11 +17,14 @@
 12. tornado的socket处理
 13. tornado异步非阻塞的实现方式
 14. mysql连接类代码
+15. python的垃圾回收机制 -> [Python系列 - 浅析Python的垃圾回收机制](https://runnerliu.github.io/2017/07/16/pythongc/)
+16. celery -> [Python库-celery](https://runnerliu.github.io/2020/11/18/python-lib-celery/)
 
 ### Golang相关
 
 1. 切片和数组的区别
 2. make和new的区别，make第三个形参的意义
+3. go的垃圾回收机制 -> [GO系列 - 垃圾回收机制](https://runnerliu.github.io/2021/02/19/gogc/)
 
 ### 消息队列相关
 
@@ -29,17 +32,20 @@
 
 ### 网络相关
 
-1. http三次握手，如果只有2次会出现什么问题
-2. http协议的组成，http状态码，400和404的区别
-3. http与https的区别
+1. http三次握手，如果只有2次会出现什么问题 -> [TCP/IP协议入门篇](https://runnerliu.github.io/2017/04/03/tcpip/)
+2. http协议的组成，http状态码，400和404的区别 -> [HTTP常用状态码详解](https://runnerliu.github.io/2017/04/04/httpstatecode/)
+3. http与https的区别 -> [HTTP1.0、HTTP1.1、HTTP2.0的区别](https://runnerliu.github.io/2020/10/25/tcpdiff/)
 4. https密钥协商过程
 5. http2.0的优势
-6. OSI模型，nginx属于应用层，webrtc协议属于应用层
+6. OSI模型，nginx属于应用层，webrtc协议属于应用层 -> [TCP/IP协议入门篇](https://runnerliu.github.io/2017/04/03/tcpip/)
 7. ip地址的路由转换
 8. 文本协议和二进制协议的区别，哪些协议属于二进制协议
-9. url从发起到后端响应的整个过程
-10. websocket与socket的区别
+9. url从发起到后端响应的整个过程 -> [从输入 URL 到页面展示到底发生了什么](https://runnerliu.github.io/2017/06/22/urlrequestprocess/)
+10. websocket与socket的区别 -> [Websocket与Socket的区别](https://runnerliu.github.io/2021/05/18/websocket-socket/) [聊聊WebSocket与Socket.IO](https://runnerliu.github.io/2021/05/15/websocket-socketio/)
 11. 10个请求会启动100个协程、100个请求会启动1000个协程，每个协程的处理时间会不会有影响
+12. WSS与WS的区别 -> [聊聊WS和WSS](https://runnerliu.github.io/2021/02/18/wsandwss/)
+13. [HTTP POST提交数据分常见方式](https://runnerliu.github.io/2018/05/13/httppostmethod/)
+14. [阻塞|非阻塞 - 异步|同步](https://runnerliu.github.io/2017/07/20/zsfzsybtb/)
 
 ### 缓存相关
 
@@ -47,30 +53,34 @@
 2. redis的集合、有序集合的查找复杂度
 3. redis抗住高并发的原理
 4. redis主从同步，主从切换
-5. 缓存雪崩、缓存穿透、缓存击穿
+5. 缓存雪崩、缓存穿透、缓存击穿 -> [Redis系列 - 缓存雪崩、击穿、穿透、预热、更新](https://runnerliu.github.io/2021/05/23/redis-cachedown/)
+6. [Redis系列 - 分布式锁](https://runnerliu.github.io/2018/05/06/distlock/)
 
 ### 数据库相关
 
-1. mysql的数据类型，各数据类型存储字节、大小
+1. mysql的数据类型，各数据类型存储字节、大小 -> [Mysql系列 - 数据类型](https://runnerliu.github.io/2021/06/29/mysql-datatype/)
 2. mysql聚集索引、非聚集索引
 3. mysql为什么用B+树，与使用hash的区别
 4. 事物的隔离级别
 5. mysql主从同步，主从切换
 6. mysql与mongodb的区别
-7. 回表查询
+7. 回表查询 -> [Mysql系列 - 回表查询和覆盖索引](https://runnerliu.github.io/2021/05/23/mysql-huibiao/)
 8. 慢查询，如何解决
 9. mysql如果未响应如何做
 10. mysql的建表、更新、设置索引语句
 11. s_id c_id score，写sql统计每门课程的最大分数、每门课程的平均分、sql的优化，group by是否用索引
+12. [Mysql系列 - 事务](https://runnerliu.github.io/2017/08/28/mysqltransaction/)
+13. [Mysql系列 - InnoDB与MyISAM](https://runnerliu.github.io/2017/07/15/myisaminnodb/)
+14. [Mysql系列 - UNIQUE KEY与PRIMARY KEY](https://runnerliu.github.io/2017/07/15/uniqueprimarykey/)
 
 ### 操作系统相关
 
-1. 进程、线程、协程区别，各自的使用场景，优势缺点
+1. 进程、线程、协程区别，各自的使用场景，优势缺点 -> [子进程和线程的区别](https://runnerliu.github.io/2017/07/15/threadsubprocess/) [进程与线程的关系](https://runnerliu.github.io/2017/04/04/processthread/)
 2. 进程间通信方式
 3. 什么是系统调用
-4. 什么是io多路复用
+4. 什么是io多路复用 -> [I/O多路复用](https://runnerliu.github.io/2021/06/21/io-multiplexing/)
 5. 线程1:1 1：n模型，应用程序的线程与内核线程如何对应
-6. 用户态和内核态
+6. 用户态和内核态 -> [Linux的用户态和内核态](https://runnerliu.github.io/2017/07/16/linuxyhtnht/)
 7. 死锁
 
 ### 数据结构相关
@@ -83,6 +93,7 @@
 ### 设计模式相关
 
 1. 常用的设计模式及基本思想
+2. [单例模式](https://runnerliu.github.io/2017/08/27/singleinstancepython/)
 
 ### 架构设计相关
 1. 秒杀系统的设计
@@ -110,6 +121,7 @@
 14. 整数数组nums，目标值target，从数组中找到和是target的两个数，返回他们的索引，假设有且只有一种解
 15. 链表相加
 16. 大整数list获取topn和最大值
+17. [排序算法总结](https://runnerliu.github.io/2017/04/11/phpsortalgorithm/)
 
 ### 其他
 1. 为何选择看机会
