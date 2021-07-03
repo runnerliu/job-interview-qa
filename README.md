@@ -2,27 +2,69 @@
 
 ### Python相关
 
-1. 可迭代对象、迭代器
-
+1. 可迭代对象、迭代器、生成器
+ - 可迭代对象：实现了 `__iter__()` 或 `__getitem__(index)` 方法，否则会抛出 `'X' object is not iterable`，如list、tuple、str、bytes、dict、set、collections.deque
+ - 迭代器：实现了无参数的`__next__()`方法，返回序列中的下一个元素，如果没有元素了，就抛出`StopIteration`异常。`__iter__()` 返回迭代器本身。可以支持 for循环、逐行遍历文本文件、列表推导、字典推导、集合推导等。所有迭代器都是可迭代对象，反之不一定
+ - 生成器：只要函数的定义体中有`yield`关键字，该函数就是生成器函数。调用生成器函数时，会返回一个生成器对象。也就是说，生成器函数是生成器工厂。迭代器和生成器都是为了惰性求值，避免浪费内存空间
 2. python3中bytes和str的区别
-
 3. 装饰器
-
 4. list的底层实现方式，存储方式（地址空间分散or连续），插入复杂度
-
 5. GIL -> [Python系列 - 计算密集型任务和I/O密集型任务](https://runnerliu.github.io/2017/07/15/jsmjiomj/)
-
 6. 常用标准库
-
+ - os sys traceback json time datetime math hashlib logging threading queue copy 等
 7. 常用第三方库
+ - redis sqlalchemy requests tornado apscheduler celery pymysql pyjwt pykafka 等
 8. 生成器、迭代器的实现
 9. django、tornado、flask实现上的区别，并发处理方式
 10. tornado异步是如何实现的
 11. python协程和go协程的实现及区别
 12. 如何理解面向对象，对象的特性
+ - 面向对象是将现实问题构建关系，然后抽象成类，给类定义属性和方法后，再将类实例化成实例，通过访问实例的属性和调用方法来进行使用
+ - 封装、继承、多态
 13. tornado的socket处理
 14. tornado异步非阻塞的实现方式
 15. mysql连接类代码
+```
+import traceback
+
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+
+
+class MysqlUtils(object):
+
+    def __init__(self, db_config):
+        self.db_config = db_config
+        self.host = self.db_config['host']
+        self.port = self.db_config['port']
+        self.name = self.db_config['name']
+        self.user = self.db_config['user']
+        self.password = self.db_config['password']
+        self.charset = self.db_config.get('charset', None)
+        if self.charset:
+            self.engine = create_engine(
+                "mysql+pymysql://{}:{}@{}:{}/{}?charset={}".format(
+                    self.user, self.password, self.host, self.port, self.name, self.charset),
+                encoding="utf-8",
+                echo=False,
+                pool_recycle=3600,
+                pool_size=30)
+        else:
+            self.engine = create_engine(
+                "mysql+pymysql://{}:{}@{}:{}/{}".format(
+                    self.user, self.password, self.host, self.port, self.name),
+                encoding="utf-8",
+                echo=False,
+                pool_recycle=3600,
+                pool_size=30)
+
+    def open(self):
+        try:
+            self.session = sessionmaker(bind=self.engine)
+            return True
+        except Exception as e:
+            return False
+```
 16. python的垃圾回收机制 -> [Python系列 - 浅析Python的垃圾回收机制](https://runnerliu.github.io/2017/07/16/pythongc/)
 17. celery -> [Python库-celery](https://runnerliu.github.io/2020/11/18/python-lib-celery/)
 
