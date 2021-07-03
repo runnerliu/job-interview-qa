@@ -3,22 +3,28 @@
 ### Python相关
 
 1. 可迭代对象、迭代器
+
 2. python3中bytes和str的区别
+
 3. 装饰器
-3. list的底层实现方式，存储方式（地址空间分散or连续），插入复杂度
-4. GIL -> [Python系列 - 计算密集型任务和I/O密集型任务](https://runnerliu.github.io/2017/07/15/jsmjiomj/)
-5. 常用标准库
-6. 常用第三方库
-7. 生成器、迭代器的实现
-8. django、tornado、flask实现上的区别，并发处理方式
-9. tornado异步是如何实现的
-10. python协程和go协程的实现及区别
-11. 如何理解面向对象，对象的特性
-12. tornado的socket处理
-13. tornado异步非阻塞的实现方式
-14. mysql连接类代码
-15. python的垃圾回收机制 -> [Python系列 - 浅析Python的垃圾回收机制](https://runnerliu.github.io/2017/07/16/pythongc/)
-16. celery -> [Python库-celery](https://runnerliu.github.io/2020/11/18/python-lib-celery/)
+
+4. list的底层实现方式，存储方式（地址空间分散or连续），插入复杂度
+
+5. GIL -> [Python系列 - 计算密集型任务和I/O密集型任务](https://runnerliu.github.io/2017/07/15/jsmjiomj/)
+
+6. 常用标准库
+
+7. 常用第三方库
+8. 生成器、迭代器的实现
+9. django、tornado、flask实现上的区别，并发处理方式
+10. tornado异步是如何实现的
+11. python协程和go协程的实现及区别
+12. 如何理解面向对象，对象的特性
+13. tornado的socket处理
+14. tornado异步非阻塞的实现方式
+15. mysql连接类代码
+16. python的垃圾回收机制 -> [Python系列 - 浅析Python的垃圾回收机制](https://runnerliu.github.io/2017/07/16/pythongc/)
+17. celery -> [Python库-celery](https://runnerliu.github.io/2020/11/18/python-lib-celery/)
 
 ### Golang相关
 
