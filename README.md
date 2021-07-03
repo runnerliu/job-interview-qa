@@ -7,7 +7,42 @@
  - 迭代器：实现了无参数的`__next__()`方法，返回序列中的下一个元素，如果没有元素了，就抛出`StopIteration`异常。`__iter__()` 返回迭代器本身。可以支持 for循环、逐行遍历文本文件、列表推导、字典推导、集合推导等。所有迭代器都是可迭代对象，反之不一定
  - 生成器：只要函数的定义体中有`yield`关键字，该函数就是生成器函数。调用生成器函数时，会返回一个生成器对象。也就是说，生成器函数是生成器工厂。迭代器和生成器都是为了惰性求值，避免浪费内存空间
 2. python3中bytes和str的区别
+ - Python2的字符串有两种：str 和 unicode，Python3的字符串也有两种：str 和 bytes。Python2 的 str 相当于 Python3 的bytes，而unicode相当于Python3的str。Python3里面的str是在内存中对文本数据进行使用的，bytes是对二进制数据使用的。str可以encode为bytes，但是bytes不一定可以decode为str。bytes一般来自网络读取的数据、从二进制文件（图片等）读取的数据、以二进制模式读取的文本文件(.txt, .html, .py, .cpp等)
 3. 装饰器
+```
+import time
+
+def timmer(flag):
+    """
+    :param flag: 接收装饰器的参数
+    :return:
+    """
+    def outer_wrapper(func):
+        """
+        :param func: 接收被装饰的函数
+        :return:
+        """
+        # 接收被装饰函数的参数
+        def wrapper(*args, **kwargs):
+            """
+            :param args: 收集被装饰函数的参数
+            :param kwargs: 收集被装饰函数的关键字参数
+            :return:
+            """
+            if flag == "true":
+                start_time = time.time()
+                # 调用被装饰的函数
+                result = func(*args, **kwargs)
+                # 让进程睡一秒
+                time.sleep(1)
+                stop_time = time.time()
+                print("{func} spend {time} ".format(func="add", time=stop_time - start_time))
+                return result
+            else:
+                print("Unexpected ending")
+        return wrapper
+    return outer_wrapper
+```
 4. list的底层实现方式，存储方式（地址空间分散or连续），插入复杂度
 5. GIL -> [Python系列 - 计算密集型任务和I/O密集型任务](https://runnerliu.github.io/2017/07/15/jsmjiomj/)
 6. 常用标准库
