@@ -105,21 +105,21 @@
 
 ### 算法相关
 
-1. 二叉树层序遍历，返回二维数组
+1. 二叉树层序遍历，返回二维数组 -> [二叉树的层序遍历](https://github.com/runnerliu/leetcode-hot-100#102-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86)
 2. unc_a返回随机1-7 利用func_a实现func_b返回随机1-5
 3. 14e个数字，找到第1e大的数
 4. 二叉树S形遍历
 5. 一条曲线，获取以10min为长度的最大值，避免每次重复计算
-6. 检测链表有环
+6. 检测链表有环 -> [环形链表](https://github.com/runnerliu/leetcode-hot-100#141-%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8)
 7. 1w的阶乘有多少个0
-8. 孤岛问题，0 1的矩阵，上下左右能相连的1是一个岛，数出来一个矩阵中有多少个孤岛
+8. 孤岛问题，0 1的矩阵，上下左右能相连的1是一个岛，数出来一个矩阵中有多少个孤岛 -> [统计封闭岛屿的数目](https://github.com/runnerliu/leetcode-hot-100#1254-%E7%BB%9F%E8%AE%A1%E5%B0%81%E9%97%AD%E5%B2%9B%E5%B1%BF%E7%9A%84%E6%95%B0%E7%9B%AE)
 9. 长url如何转换成短url
 10. str_1 = "helloworld"、str_2 = "oworldhell"，func(str_1, str_2)  ->  true / false
-11. 一个数组，包含0和非0的整数，将0转移到前边，其他非0依次移动但前后顺序不变
+11. 一个数组，包含0和非0的整数，将0转移到前边，其他非0依次移动但前后顺序不变 -> [移动零](https://github.com/runnerliu/leetcode-hot-100#283-%E7%A7%BB%E5%8A%A8%E9%9B%B6)
 12. 二分查找
 13. 兄弟词
-14. 整数数组nums，目标值target，从数组中找到和是target的两个数，返回他们的索引，假设有且只有一种解
-15. 链表相加
+14. 整数数组nums，目标值target，从数组中找到和是target的两个数，返回他们的索引，假设有且只有一种解 -> [两数之和](https://github.com/runnerliu/leetcode-hot-100#1-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C)
+15. 链表相加 -> [两数相加](https://github.com/runnerliu/leetcode-hot-100#2-%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0)
 16. 大整数list获取topn和最大值
 17. [排序算法总结](https://runnerliu.github.io/2017/04/11/phpsortalgorithm/)
 
