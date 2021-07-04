@@ -51,7 +51,7 @@ def timmer(flag):
  - redis sqlalchemy requests tornado apscheduler celery pymysql pyjwt pykafka 等
 8. 生成器、迭代器的实现
 9. django、tornado、flask实现上的区别，并发处理方式
-10. tornado异步是如何实现的
+10. tornado异步是如何实现的 -> [Tornado异步非阻塞详解](https://www.jianshu.com/p/22b92e92aca5)
 11. python协程和go协程的实现及区别
 12. 如何理解面向对象，对象的特性
  - 面向对象是将现实问题构建关系，然后抽象成类，给类定义属性和方法后，再将类实例化成实例，通过访问实例的属性和调用方法来进行使用
@@ -129,6 +129,8 @@ class MysqlUtils(object):
 12. WSS与WS的区别 -> [聊聊WS和WSS](https://runnerliu.github.io/2021/02/18/wsandwss/)
 13. [HTTP POST提交数据分常见方式](https://runnerliu.github.io/2018/05/13/httppostmethod/)
 14. [阻塞|非阻塞 - 异步|同步](https://runnerliu.github.io/2017/07/20/zsfzsybtb/)
+15. 并行和并发 -> [并发与并行的区别是什么？](https://www.zhihu.com/question/33515481)
+ - 并发是一个处理器同时处理多个任务，并行是多个处理器或者是多核的处理器同时处理多个不同的任务
 
 ### 缓存相关
 
@@ -169,9 +171,16 @@ class MysqlUtils(object):
 ### 数据结构相关
 
 1. hash表的实现，hash冲突，hash冲突如果很多怎么解决
+ - hash冲突：开放地址法和链表法
 2. 链表查找如何更快
+ - [跳表](https://segmentfault.com/a/1190000039386299)
 3. 数组和链表的区别
+ - 都属于线性表：所有数据都排列在只有一个维度的“线”上
+ - 数组在物理内存上是连续存储的，支持随机访问，而链表在物理内存上一般是不连续的，支持顺序访问，查找复杂度为O(1)、O(n)
+ - 插入复杂度：数组O(n)，链表O(1)
+ - 删除复杂度：数组O(n)，链表O(1)
 4. 常见的数据结构
+ - 栈、队列、数组、链表、树、图、堆、散列表
 
 ### 设计模式相关
 
