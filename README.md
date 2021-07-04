@@ -118,8 +118,8 @@ class MysqlUtils(object):
 1. http三次握手，如果只有2次会出现什么问题 -> [TCP/IP协议入门篇](https://runnerliu.github.io/2017/04/03/tcpip/)
 2. http协议的组成，http状态码，400和404的区别 -> [HTTP常用状态码详解](https://runnerliu.github.io/2017/04/04/httpstatecode/)
 3. http与https的区别 -> [HTTP1.0、HTTP1.1、HTTP2.0的区别](https://runnerliu.github.io/2020/10/25/tcpdiff/)
-4. https密钥协商过程
-5. http2.0的优势
+4. https密钥协商过程 -> [彻底搞懂HTTPS的加密原理](https://zhuanlan.zhihu.com/p/43789231)
+5. http2.0的优势 -> [HTTP1.0、HTTP1.1、HTTP2.0的区别](https://runnerliu.github.io/2020/10/25/tcpdiff/)
 6. OSI模型，nginx属于应用层，webrtc协议属于应用层 -> [TCP/IP协议入门篇](https://runnerliu.github.io/2017/04/03/tcpip/)
 7. ip地址的路由转换
 8. 文本协议和二进制协议的区别，哪些协议属于二进制协议
