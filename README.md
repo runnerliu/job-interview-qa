@@ -182,6 +182,7 @@ class MysqlUtils(object):
 
 1. 秒杀系统的设计
  - 限流、预热、隔离、削峰、一致、兜底
+ - [秒杀系统设计01 - 秒杀系统架构设计都有哪些关键点？](https://runnerliu.github.io/2021/07/04/miaosha01/#more)
 2. 问卷系统的设计
 3. 直播系统架构可优化的地方
  - 延时、webrtc架构、自动巡检、半自动修复
