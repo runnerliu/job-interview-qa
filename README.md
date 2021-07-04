@@ -185,6 +185,7 @@ class MysqlUtils(object):
 ### 设计模式相关
 
 1. 常用的设计模式及基本思想
+ - 单例模式、观察者模式、工厂模式、策略模式、适配器模式
 2. [单例模式](https://runnerliu.github.io/2017/08/27/singleinstancepython/)
 
 ### 架构设计相关
@@ -215,6 +216,19 @@ class MysqlUtils(object):
 9. 长url如何转换成短url
  - 事先生成n个短链接，将短长链接的对应关系存储在数据库中
 10. str_1 = "helloworld"、str_2 = "oworldhell"，func(str_1, str_2)  ->  true / false
+```
+def reverse(str1, str2) -> bool:
+    if not str2 or not str2:
+        return False
+    key = str2[0]
+    l1 = len(str1)
+    l2 = len(str2)
+    for i in range(l1):
+        if str1[i] == key:
+            if str1[i:] == str2[:(l1 - i)] and str1[:i] == str2[(l1 - i):]:
+                return True
+    return False
+```
 11. 一个数组，包含0和非0的整数，将0转移到前边，其他非0依次移动但前后顺序不变 -> [移动零](https://github.com/runnerliu/leetcode-hot-100#283-%E7%A7%BB%E5%8A%A8%E9%9B%B6)
 12. 二分查找
 13. 兄弟词
