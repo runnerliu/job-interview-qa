@@ -154,6 +154,15 @@ class MysqlUtils(object):
 9. mysql如果未响应如何做
 10. mysql的建表、更新、设置索引语句
 11. s_id c_id score，写sql统计每门课程的最大分数、每门课程的平均分、sql的优化，group by是否用索引
+```
+SELECT l_id, MAX(score) AS maxScore FROM lessons GROUP BY 
+
+SELECT l_id, sumScore/countStu AS avgScore FROM (SELECT l_id, SUM(score) AS sumScore, COUNT(s_id) AS countStu FROM lessons GROUP BY l_id) tmp
+
+SELECT l_id, AVG(score) AS avgScore FROM lessons GROUP BY l_id
+
+group by 先排序再分组
+```
 12. [Mysql系列 - 事务](https://runnerliu.github.io/2017/08/28/mysqltransaction/)
 13. [Mysql系列 - InnoDB与MyISAM](https://runnerliu.github.io/2017/07/15/myisaminnodb/)
 14. [Mysql系列 - UNIQUE KEY与PRIMARY KEY](https://runnerliu.github.io/2017/07/15/uniqueprimarykey/)
