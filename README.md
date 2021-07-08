@@ -43,7 +43,7 @@ def timmer(flag):
         return wrapper
     return outer_wrapper
 ```
-4. list的底层实现方式，存储方式（地址空间分散or连续），插入复杂度
+4. list的底层实现方式，存储方式（地址空间连续），插入复杂度O(n)
 5. GIL -> [Python系列 - 计算密集型任务和I/O密集型任务](https://runnerliu.github.io/2017/07/15/jsmjiomj/)
 6. 常用标准库
  - os sys traceback json time datetime math hashlib logging threading queue copy 等
@@ -131,6 +131,7 @@ class MysqlUtils(object):
 14. [阻塞|非阻塞 - 异步|同步](https://runnerliu.github.io/2017/07/20/zsfzsybtb/)
 15. 并行和并发 -> [并发与并行的区别是什么？](https://www.zhihu.com/question/33515481)
  - 并发是一个处理器同时处理多个任务，并行是多个处理器或者是多核的处理器同时处理多个不同的任务
+16. traceroute实现原理
 
 ### 缓存相关
 
@@ -140,6 +141,7 @@ class MysqlUtils(object):
 4. redis主从同步，主从切换
 5. 缓存雪崩、缓存穿透、缓存击穿 -> [Redis系列 - 缓存雪崩、击穿、穿透、预热、更新](https://runnerliu.github.io/2021/05/23/redis-cachedown/)
 6. [Redis系列 - 分布式锁](https://runnerliu.github.io/2018/05/06/distlock/)
+7. redis连接池的性能提升有多大
 
 ### 数据库相关
 
@@ -166,6 +168,7 @@ group by 先排序再分组
 12. [Mysql系列 - 事务](https://runnerliu.github.io/2017/08/28/mysqltransaction/)
 13. [Mysql系列 - InnoDB与MyISAM](https://runnerliu.github.io/2017/07/15/myisaminnodb/)
 14. [Mysql系列 - UNIQUE KEY与PRIMARY KEY](https://runnerliu.github.io/2017/07/15/uniqueprimarykey/)
+15. mysql实现分页查询
 
 ### 操作系统相关
 
@@ -245,6 +248,11 @@ def reverse(str1, str2) -> bool:
 15. 链表相加 -> [两数相加](https://github.com/runnerliu/leetcode-hot-100#2-%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0)
 16. 大整数list获取topn和最大值 -> [数组中的第k个最大元素](https://github.com/runnerliu/leetcode-hot-100#215-%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E7%AC%ACk%E4%B8%AA%E6%9C%80%E5%A4%A7%E5%85%83%E7%B4%A0)
 17. [排序算法总结](https://runnerliu.github.io/2017/04/11/phpsortalgorithm/)
+18. 如何实现一个定时器 -> [构建企业级业务高可用的延时消息中台](https://club.perfma.com/article/641128)
+ - 排序双向链表
+ - 小顶堆
+ - 时间轮
+ - 多层时间轮
 
 ### 其他
 1. 为何选择看机会
