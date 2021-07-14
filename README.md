@@ -253,6 +253,33 @@ def reverse(str1, str2) -> bool:
  - 小顶堆
  - 时间轮
  - 多层时间轮
+19. 实现LRU算法
+```
+class LRUCache(object):
+
+    def __init__(self, cap):
+        self.cap = cap
+        self.cache = {}
+        self.keys = []
+
+    def get(self, key):
+        if key in self.cache:
+            value = self.cache[key]
+            self.keys.remove(key)
+            self.keys.insert(0, key)
+        else:
+            value = -1
+        return value
+
+    def put(self, key, value):
+        if key in self.cache:
+            self.keys.remove(key)
+        elif len(self.keys) == self.cap:
+            old_key = self.keys.pop()
+            del self.cache[old_key]
+        self.keys.insert(0, key)
+        self.cache[key] = value
+```
 
 ### 其他
 1. 为何选择看机会
