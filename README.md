@@ -102,6 +102,15 @@ class MysqlUtils(object):
 ```
 16. python的垃圾回收机制 -> [Python系列 - 浅析Python的垃圾回收机制](https://runnerliu.github.io/2017/07/16/pythongc/)
 17. celery -> [Python库-celery](https://runnerliu.github.io/2020/11/18/python-lib-celery/)
+18. tornadoweb漏洞相关
+ - cookie漏洞：set_secure_cookie
+ - 请求漏洞：CSRF(网站过分信任用户，放任来自所谓通过访问控制机制的代表合法用户的请求执行网站的某个特定功能，跨站请求伪造) XSS(网站过分信任用户，放任来自所谓通过访问控制机制的代表合法用户的请求执行网站的某个特定功能，跨站脚本攻击), xsrf_cookies
+ - authenticated装饰器
+ - sql注入、html注入
+19. tornado高版本与低版本的区别
+20. tornado性能强悍的原因
+21. 装饰器的底层实现
+ - 使用闭包，函数也是对象，可以作为参数传递
 
 ### Golang相关
 
@@ -179,6 +188,9 @@ group by 先排序再分组
 5. 线程1:1 1：n模型，应用程序的线程与内核线程如何对应
 6. 用户态和内核态 -> [Linux的用户态和内核态](https://runnerliu.github.io/2017/07/16/linuxyhtnht/)
 7. 死锁
+8. 僵尸进程和孤儿进程
+ - 僵尸进程：当进程exit()退出之后，他的父进程没有通过wait()系统调用回收他的进程描述符的信息，该进程会继续停留在系统的进程表中，占用内核资源，这样的进程就是僵尸进程。
+ - 孤儿进程：当一个进程正在运行时，他的父进程忽然退出，此时该进程就是一个孤儿进程。作为一个进程，需要找到一个父进程，否则这种进程在退出之后没人回收他的进程描述符，空耗内存。此时该进程会找到一个父进程，如果自己所在的进程组没人收养，那就作为init进程的子进程。
 
 ### 数据结构相关
 
@@ -279,6 +291,35 @@ class LRUCache(object):
             del self.cache[old_key]
         self.keys.insert(0, key)
         self.cache[key] = value
+```
+20. 合并N个有序数组
+```
+import heapq
+from collections import deque
+
+def list_merge(*lists):
+    #入参判断, 这里直接pass
+    #将所有链表转化为deque,方便使用popleft获取链表的最左元素及根据索引返回该索引对应的剩余链表
+    queues = [queue for queue in map(deque, lists)]
+    heap = []
+    #初始化链表,该链表中的元素为元组, 各个链表的第一个元素及链表所在索引
+    for i, lst in enumerate(queues):
+        heap.append((lst.popleft(), i))
+    #将链表转换成最小堆
+    heapq.heapify(heap)
+    #链表: 用于存放每次获取的堆顶层元素
+    result = []
+    
+    while heap:
+        #将堆顶层元素出堆
+        value, index = heapq.heappop(heap)
+        #将顶层元素追加
+        result.append(value)
+        #根据索引获取对应链表的剩余元素
+        if queues[index]:
+             #如果存在下一个元素,则将该元素及索引入堆
+            heapq.heappush(heap, (queues[index].popleft(), index))
+    return result
 ```
 
 ### 其他
