@@ -111,6 +111,7 @@ class MysqlUtils(object):
 20. tornado性能强悍的原因
 21. 装饰器的底层实现
  - 使用闭包，函数也是对象，可以作为参数传递
+22. list()和[]哪个更快
 
 ### Golang相关
 
@@ -205,6 +206,8 @@ group by 先排序再分组
  - 删除复杂度：数组O(n)，链表O(1)
 4. 常见的数据结构
  - 栈、队列、数组、链表、树、图、堆、散列表
+5. 红黑树
+6. 排序算法，高考分数排序 -> 桶排序 https://www.runoob.com/w3cnote/ten-sorting-algorithm.html
 
 ### 设计模式相关
 
@@ -239,88 +242,18 @@ group by 先排序再分组
 8. 孤岛问题，0 1的矩阵，上下左右能相连的1是一个岛，数出来一个矩阵中有多少个孤岛 -> [统计封闭岛屿的数目](https://github.com/runnerliu/leetcode-hot-100#1254-%E7%BB%9F%E8%AE%A1%E5%B0%81%E9%97%AD%E5%B2%9B%E5%B1%BF%E7%9A%84%E6%95%B0%E7%9B%AE)
 9. 长url如何转换成短url
  - 事先生成n个短链接，将短长链接的对应关系存储在数据库中
-10. str_1 = "helloworld"、str_2 = "oworldhell"，func(str_1, str_2)  ->  true / false
-```
-def reverse(str1, str2) -> bool:
-    if not str2 or not str2:
-        return False
-    key = str2[0]
-    l1 = len(str1)
-    l2 = len(str2)
-    for i in range(l1):
-        if str1[i] == key:
-            if str1[i:] == str2[:(l1 - i)] and str1[:i] == str2[(l1 - i):]:
-                return True
-    return False
-```
-11. 一个数组，包含0和非0的整数，将0转移到前边，其他非0依次移动但前后顺序不变 -> [移动零](https://github.com/runnerliu/leetcode-hot-100#283-%E7%A7%BB%E5%8A%A8%E9%9B%B6)
-12. 二分查找
-13. 兄弟词
-14. 整数数组nums，目标值target，从数组中找到和是target的两个数，返回他们的索引，假设有且只有一种解 -> [两数之和](https://github.com/runnerliu/leetcode-hot-100#1-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C)
-15. 链表相加 -> [两数相加](https://github.com/runnerliu/leetcode-hot-100#2-%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0)
-16. 大整数list获取topn和最大值 -> [数组中的第k个最大元素](https://github.com/runnerliu/leetcode-hot-100#215-%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E7%AC%ACk%E4%B8%AA%E6%9C%80%E5%A4%A7%E5%85%83%E7%B4%A0)
-17. [排序算法总结](https://runnerliu.github.io/2017/04/11/phpsortalgorithm/)
-18. 如何实现一个定时器 -> [构建企业级业务高可用的延时消息中台](https://club.perfma.com/article/641128)
+10. 一个数组，包含0和非0的整数，将0转移到前边，其他非0依次移动但前后顺序不变 -> [移动零](https://github.com/runnerliu/leetcode-hot-100#283-%E7%A7%BB%E5%8A%A8%E9%9B%B6)
+11. 二分查找
+12. 兄弟词
+13. 整数数组nums，目标值target，从数组中找到和是target的两个数，返回他们的索引，假设有且只有一种解 -> [两数之和](https://github.com/runnerliu/leetcode-hot-100#1-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C)
+14. 链表相加 -> [两数相加](https://github.com/runnerliu/leetcode-hot-100#2-%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0)
+15. 大整数list获取topn和最大值 -> [数组中的第k个最大元素](https://github.com/runnerliu/leetcode-hot-100#215-%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E7%AC%ACk%E4%B8%AA%E6%9C%80%E5%A4%A7%E5%85%83%E7%B4%A0)
+16. [排序算法总结](https://runnerliu.github.io/2017/04/11/phpsortalgorithm/)
+17. 如何实现一个定时器 -> [构建企业级业务高可用的延时消息中台](https://club.perfma.com/article/641128)
  - 排序双向链表
  - 小顶堆
  - 时间轮
  - 多层时间轮
-19. 实现LRU算法
-```
-class LRUCache(object):
-
-    def __init__(self, cap):
-        self.cap = cap
-        self.cache = {}
-        self.keys = []
-
-    def get(self, key):
-        if key in self.cache:
-            value = self.cache[key]
-            self.keys.remove(key)
-            self.keys.insert(0, key)
-        else:
-            value = -1
-        return value
-
-    def put(self, key, value):
-        if key in self.cache:
-            self.keys.remove(key)
-        elif len(self.keys) == self.cap:
-            old_key = self.keys.pop()
-            del self.cache[old_key]
-        self.keys.insert(0, key)
-        self.cache[key] = value
-```
-20. 合并N个有序数组
-```
-import heapq
-from collections import deque
-
-def list_merge(*lists):
-    #入参判断, 这里直接pass
-    #将所有链表转化为deque,方便使用popleft获取链表的最左元素及根据索引返回该索引对应的剩余链表
-    queues = [queue for queue in map(deque, lists)]
-    heap = []
-    #初始化链表,该链表中的元素为元组, 各个链表的第一个元素及链表所在索引
-    for i, lst in enumerate(queues):
-        heap.append((lst.popleft(), i))
-    #将链表转换成最小堆
-    heapq.heapify(heap)
-    #链表: 用于存放每次获取的堆顶层元素
-    result = []
-    
-    while heap:
-        #将堆顶层元素出堆
-        value, index = heapq.heappop(heap)
-        #将顶层元素追加
-        result.append(value)
-        #根据索引获取对应链表的剩余元素
-        if queues[index]:
-             #如果存在下一个元素,则将该元素及索引入堆
-            heapq.heappush(heap, (queues[index].popleft(), index))
-    return result
-```
 
 ### 其他
 1. 为何选择看机会
