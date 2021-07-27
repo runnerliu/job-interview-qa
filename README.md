@@ -45,6 +45,11 @@ def timmer(flag):
 ```
 4. list的底层实现方式，存储方式（地址空间连续），插入复杂度O(n)
 5. GIL -> [Python系列 - 计算密集型任务和I/O密集型任务](https://runnerliu.github.io/2017/07/15/jsmjiomj/)
+
+第一种线程释放GIL的情况。假设现在线程A因为进入IO操作而主动释放了GIL，那么在这种情况下，由于线程A的IO操作等待时间不确定，那么等待的线程B一定会得到GIL锁，这种比较“礼貌的”情况我们一般称为“协同式多任务处理”，相当于大家按照协商好的规则来，线程是安全的，不需要额外加锁。
+
+我们来看另外一种情况，即线程A是因为解释器不间断执行了1000字节码的指令或不间断运行了15毫秒而放弃了GIL，那么此时实际上线程A和线程B将同时竞争GIL锁。在同时竞争的情况下，实际上谁会竞争成功是不确定的一个结果，所以一般被称为“抢占式多任务处理”，这种情况下当然就看谁抢得厉害了。当然，在python3上由于对GIL做了优化，并且会动态调整线程的优先级，所以线程B的优先级会比较高，但仍然无法肯定线程B就一定会拿到GIL。那么在这种情况下，线程可能就会出现不安全的状态。
+
 6. 常用标准库
  - os sys traceback json time datetime math hashlib logging threading queue copy 等
 7. 常用第三方库
@@ -122,6 +127,7 @@ class MysqlUtils(object):
 ### 消息队列相关
 
 1. RocketMQ消息丢失的处理方式 -> [RocketMQ如何处理消息丢失](https://runnerliu.github.io/2021/05/18/rocketmq-msglost/)
+2. kafka丢消息：https://zhuanlan.zhihu.com/p/307480336
 
 ### 网络相关
 
@@ -152,6 +158,9 @@ class MysqlUtils(object):
 5. 缓存雪崩、缓存穿透、缓存击穿 -> [Redis系列 - 缓存雪崩、击穿、穿透、预热、更新](https://runnerliu.github.io/2021/05/23/redis-cachedown/)
 6. [Redis系列 - 分布式锁](https://runnerliu.github.io/2018/05/06/distlock/)
 7. redis连接池的性能提升有多大
+8. redis RDB和AOF
+ - 如果 Redis 同时使用 RDB 和 AOF 持久化，Redis 会优先使用 AOF 进行恢复数据
+ - 在启动 Redis 时，如果已经存在了 appendonly.aof 文件，则基于 appendonly.aof 文件恢复数据；如果不存在 appendonly.aof 文件，则创建一个空的 appendonly.aof 文件，并基于这个空的 appendonly.aof 文件启动。
 
 ### 数据库相关
 
@@ -179,6 +188,13 @@ group by 先排序再分组
 13. [Mysql系列 - InnoDB与MyISAM](https://runnerliu.github.io/2017/07/15/myisaminnodb/)
 14. [Mysql系列 - UNIQUE KEY与PRIMARY KEY](https://runnerliu.github.io/2017/07/15/uniqueprimarykey/)
 15. mysql实现分页查询
+16. mysql间隙锁：https://www.jianshu.com/p/32904ee07e56
+17. mysql事务隔离级别序列化：Serializable（序列化）：可以避免脏读、不可重复读和幻读，但是并发性极低，一般很少使用。注意：该隔离级别在读写数据时会锁住整张表。
+18. 两段锁：
+数据库遵循的是两段锁协议，将事务分成两个阶段，加锁阶段和解锁阶段（所以叫两段锁）
+加锁阶段：在该阶段可以进行加锁操作。在对任何数据进行读操作之前要申请并获得S锁（共享锁，其它事务可以继续加共享锁，但不能加排它锁），在进行写操作之前要申请并获得X锁（排它锁，其它事务不能再获得任何锁）。加锁不成功，则事务进入等待状态，直到加锁成功才继续执行。
+解锁阶段：当事务释放了一个封锁以后，事务进入解锁阶段，在该阶段只能进行解锁操作不能再进行加锁操作。
+这种方式虽然无法避免死锁，但是两段锁协议可以保证事务的并发调度是串行化（串行化很重要，尤其是在数据恢复和备份的时候）的。
 
 ### 操作系统相关
 
